@@ -1,0 +1,273 @@
+﻿body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #410353 100%);
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.home-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: #0b1120;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(197, 85, 32, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.navbar-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  width: min(500px, 100%);
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #8b5cf6;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a,
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.nav-button,
+.product-card button {
+  background: linear-gradient(90deg, #8b5cf6, #73217a);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.home-page {
+  flex: 1;
+  padding: 3rem 1.5rem;
+}
+
+.hero-section {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at top, rgba(124, 58, 237, 0.18), transparent 30%),
+    rgba(15, 23, 42, 0.5);
+  border-radius: 1.5rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a78bfa;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero-section h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+}
+
+.hero-text {
+  margin-top: 0.75rem;
+  color: #cbd5e1;
+}
+
+.product-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: rgba(27, 5, 48, 0.9);
+  border: 1px solid rgba(87, 5, 69, 0.12);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.product-tag {
+  color: #a78bfa;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.product-card h2 {
+  margin: 0;
+}
+
+.product-price {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.loading-text,
+.error-text {
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #0b1120;
+  color: #94a3b8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: min(460px, 100%);
+  padding: 2.25rem 2rem;
+  border-radius: 1.25rem;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.32);
+}
+
+.login-card h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 2.5vw, 2.5rem);
+}
+
+.login-card p {
+  margin: 0 0 1.8rem;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+.login-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.login-form label {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+.login-form button {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: none;
+  border-radius: 0.9rem;
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.login-form button:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.switch-text {
+  margin: 1.25rem 0 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.switch-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #7c3aed;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.switch-link:hover {
+  text-decoration: underline;
+}
+
+.login-message {
+  margin: 1.25rem 0 0;
+  color: #a5f3fc;
+  font-size: 0.95rem;
+}
