@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 const API_BASE_URL = 'https://sample-e-1.onrender.com'
+const ADD_PRODUCT_URL = `${API_BASE_URL}/product/addProduct`
 
 function Addproduct() {
   const [formData, setFormData] = useState({
@@ -38,9 +39,9 @@ function Addproduct() {
 
     const payload = new FormData()
     payload.append('name', formData.name)
-    payload.append('price', formData.price)
+    payload.append('price', String(formData.price))
     payload.append('description', formData.description)
-    payload.append('stock', formData.stock)
+    payload.append('stock', String(formData.stock))
     payload.append('category', formData.category)
 
     if (image) {
@@ -52,7 +53,7 @@ function Addproduct() {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`${API_BASE_URL}/product/create`, {
+      const response = await fetch(ADD_PRODUCT_URL, {
         method: 'POST',
         headers: token
           ? {

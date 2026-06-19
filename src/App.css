@@ -77,6 +77,35 @@
   padding: 0.8rem 1rem;
   font-weight: 600;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.25);
+}
+
+.nav-button:hover,
+.product-card button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.38);
+}
+
+.nav-button:active,
+.product-card button:active {
+  transform: scale(0.97);
+}
+
+.nav-button::after,
+.product-card button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: translateX(-100%);
+}
+
+.nav-button:hover::after,
+.product-card button:hover::after {
+  animation: shimmer 0.6s ease;
 }
 
 .home-page {
@@ -180,6 +209,12 @@
   }
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .loading-text,
 .error-text {
   text-align: center;
@@ -276,12 +311,34 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
 }
 
 .login-form button:hover {
-  transform: translateY(-1px);
-  opacity: 0.96;
+  transform: translateY(-2px) scale(1.02);
+  opacity: 0.98;
+  box-shadow: 0 14px 28px rgba(124, 58, 237, 0.38);
+}
+
+.login-form button:active {
+  transform: scale(0.97);
+}
+
+.login-form button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.login-form button:hover::after {
+  animation: shimmer 0.7s ease;
 }
 
 .switch-text {

@@ -6,14 +6,7 @@ import Signup from './Pages/Signup.jsx'
 import Addproduct from './Pages/Addproduct.jsx'
 
 function App() {
-  const [view, setView] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token')
-      return token ? 'home' : 'login'
-    }
-
-    return 'login'
-  })
+  const [view, setView] = useState('login')
 
   return (
     <div className="App">
