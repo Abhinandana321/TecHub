@@ -1,4 +1,4 @@
-function Navbar() {
+function Navbar({ onAddProduct }) {
   return (
     <header className="navbar">
       <div className="navbar-brand">TecHub</div>
@@ -15,7 +15,9 @@ function Navbar() {
         <a href="#">Home</a>
         <a href="#">Features</a>
         <a href="#">Pricing</a>
-        <a href="#">Contact</a>
+        <button type="button" className="nav-button" onClick={onAddProduct}>
+          Add Product
+        </button>
       </nav>
     </header>
   )

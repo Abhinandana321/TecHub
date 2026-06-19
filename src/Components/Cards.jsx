@@ -35,7 +35,12 @@ function Cards() {
   }, [])
 
   if (loading) {
-    return <p className="loading-text">Loading products...</p>
+    return (
+      <div className="loading-state" role="status" aria-live="polite">
+        <div className="loader-spinner"></div>
+        <p className="loading-text">Loading products...</p>
+      </div>
+    )
   }
 
   if (error) {

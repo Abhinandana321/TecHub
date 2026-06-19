@@ -1,56 +1,76 @@
 
 import { useState } from 'react'
+import { z } from 'zod'
+
+const loginSchema = z.object({
+  email: z.string().trim().email('Please enter a valid email address.'),
+  password: z
+    .string()
+   
+})
 
 function Login({ onSwitch, onLogin }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
+  const [errors, setErrors] = useState({})
 
- const handleSubmit = async (event) => {
-  event.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault()
 
-  if (!email || !password) {
-    setMessage('Please enter both email and password.')
-    return
-  }
+    const validation = loginSchema.safeParse({ email, password })
 
-  try {
-    const response = await fetch(
-      "https://sample-e-1.onrender.com/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }
-    )
+    if (!validation.success) {
+      const fieldErrors = {}
 
-    const data = await response.json()
+      validation.error.issues.forEach((issue) => {
+        const field = issue.path[0]
+        fieldErrors[field] = issue.message
+      })
 
-    if (response.ok) {
-      setMessage("Login successful!")
-
-      // Save token if returned by API
-      localStorage.setItem("token", data.token)
-
-      setEmail("")
-      setPassword("")
-
-      if (onLogin) {
-        onLogin(data)
-      }
-    } else {
-      setMessage(data.message || "Login failed")
+      setErrors(fieldErrors)
+      setMessage('Please correct the highlighted fields.')
+      return
     }
-  } catch (error) {
-    console.error(error)
-    setMessage("Server error. Please try again.")
+
+    setErrors({})
+
+    try {
+      const response = await fetch(
+        'https://sample-e-1.onrender.com/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: validation.data.email,
+            password: validation.data.password,
+          }),
+        }
+      )
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setMessage('Login successful!')
+
+        localStorage.setItem('token', data.token)
+
+        setEmail('')
+        setPassword('')
+
+        if (onLogin) {
+          onLogin(data)
+        }
+      } else {
+        setMessage(data.message || 'Login failed')
+      }
+    } catch (error) {
+      console.error(error)
+      setMessage('Server error. Please try again.')
+    }
   }
-}
 
   return (
     <main className="login-page">
@@ -64,10 +84,16 @@ function Login({ onSwitch, onLogin }) {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (errors.email) {
+                  setErrors((prev) => ({ ...prev, email: '' }))
+                }
+              }}
               placeholder="you@example.com"
-              required
+              aria-invalid={Boolean(errors.email)}
             />
+            {errors.email && <span className="field-error">{errors.email}</span>}
           </label>
 
           <label>
@@ -75,10 +101,16 @@ function Login({ onSwitch, onLogin }) {
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                if (errors.password) {
+                  setErrors((prev) => ({ ...prev, password: '' }))
+                }
+              }}
               placeholder="Enter your password"
-              required
+              aria-invalid={Boolean(errors.password)}
             />
+            {errors.password && <span className="field-error">{errors.password}</span>}
           </label>
 
           <button type="submit">Log In</button>

@@ -2,10 +2,10 @@
 import Footer from '../Components/Footer.jsx'
 import Cards from '../Components/Cards.jsx'
 
-function Home() {
+function Home({ onAddProduct }) {
   return (
     <div className="home-layout">
-      <Navbar />
+      <Navbar onAddProduct={onAddProduct} />
 
       <main className="home-page">
         <section className="product-grid">
